@@ -1,0 +1,53 @@
+{
+   "name": "isp-list-app",
+   "private": true,
+   "description": "This project is for small business for monthly payment collection  ",
+   "version": "1.0.0",
+   "type": "module",
+   "main": "dist/main/index.cjs",
+   "build": {
+      "appId": "isp-list-app",
+      "productName": "Monthly Payment Monitoring",
+      "asar": true,
+      "files": [
+         "dist",
+         "main"
+      ],
+      "directories": {
+         "buildResources": "resources"
+      }
+   },
+   "scripts": {
+      "dev:renderer": "vite packages/renderer",
+      "build:renderer": "tsc -p packages/renderer/tsconfig.json --noEmit && vite build packages/renderer",
+      "build:preload": "tsc -p packages/preload/tsconfig.json --noEmit && vite build packages/preload",
+      "build:main": "tsc -p packages/main/tsconfig.json --noEmit && vite build packages/main",
+      "build": "npm run build:renderer && npm run build:preload && npm run build:main",
+      "build:electron": "electron-builder",
+      "start": "electron .",
+      "pack": "npm run build && electron-builder"
+   },
+   "author": "albertcabs@gmail.com",
+   "license": "MIT",
+   "dependencies": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "xlsx": "^0.18.5"
+   },
+   "devDependencies": {
+      "@tailwindcss/container-queries": "^0.1.0",
+      "@types/node": "^18.11.18",
+      "@types/react": "^18.0.26",
+      "@types/react-dom": "^18.0.9",
+      "@vitejs/plugin-react": "^3.0.0",
+      "autoprefixer": "^10.4.13",
+      "electron": "^22.1.0",
+      "electron-builder": "^23.6.0",
+      "electron-devtools-installer": "^3.2.0",
+      "electron-reload": "^2.0.0-alpha.1",
+      "postcss": "^8.4.21",
+      "tailwindcss": "^3.2.4",
+      "typescript": "^4.9.3",
+      "vite": "^4.0.0"
+   }
+}
