@@ -1,9 +1,9 @@
 > ## Desktop - Electron Project 1
 >
-> -  This app is for Small business for Monthly Payment Monitoring Collection.
-> -  Create Customer Name, Date of Start ,Due Date and price of Service.
-> -  Then after one month the due date data will change red color and you can change to green as paid.
-> -  Every first day of the month will reset all paid customer and activate to monitor.
+> -  This app is for monitoring the monthly payment collection to be used mainly by small businesses
+> -  The user will input the Customer Name, Start Date, Due Date, Cost per Service
+> -  The Due Date will change to red color if it has lapsed and not yet paid and the user can change this to green once payment has been made
+> -  Every first day of the month, the app will reset all customers who have paid (color from green to no color); all customer who have not paid will remain red
 > -  You can clone or downlaod this project.
 
 ---
