@@ -46,9 +46,25 @@ function dateFormat(dte: number[]) {
    const dueDate = `${monthMap[dte[0]]} ${day} ${dte[2]}`;
    return dueDate;
 }
+const resetPaidExcel = () => {
+   const { ws, wb } = readExcelFile();
+   const value = xlsx.utils.sheet_to_json(ws, {
+      raw: false,
+      header: 1,
+   });
+
+   // reset all paid costumer on first day of the month
+   for (let x = 1; x < value.length; ++x) {
+      console.log('jjj', ws[cellData(x, 8)].v);
+      if (ws[cellData(x, 8)].v === String(2)) {
+         ws[cellData(x, 8)].v = 0;
+      }
+   }
+   reWrite(wb);
+};
 
 export function readExcel(): IList {
-   const { ws } = readExcelFile();
+   const { ws, wb } = readExcelFile();
 
    // get workbook
    const values = xlsx.utils.sheet_to_json(ws, {
@@ -64,6 +80,15 @@ export function readExcel(): IList {
    const getDay = new Date().getDate();
    const getMonth = new Date().getMonth();
 
+   //reset all paid costumer on first day of the month
+   if (getDay === 1) {
+      for (let x = 1; x < values.length; ++x) {
+         if (ws[cellData(x, 8)].v === String(2)) {
+            ws[cellData(x, 8)].v = 0;
+         }
+      }
+      reWrite(wb);
+   }
    values.forEach((val: string[], i: number) => {
       // get the header value in excell
       if (i === 0) {
@@ -85,7 +110,8 @@ export function readExcel(): IList {
          if (dueDateData === 2) {
             dueDate[i - 1] = dueDateData;
          } else {
-            dueDate[i - 1] = getDay > day ? 1 : dueDateData;
+            dueDate[i - 1] =
+               getDay > day && month === getMonth + 1 ? 1 : dueDateData;
          }
       }
    });
@@ -187,7 +213,7 @@ export const updateRowExcel = (update: ICustomerData) => {
    return true;
 };
 
-export const payedExcel = (payed: [string, number[]]) => {
+export const paidExcel = (paid: [string, number[]]) => {
    const { wb, ws } = readExcelFile();
 
    const value = xlsx.utils.sheet_to_json(ws, {
@@ -196,11 +222,11 @@ export const payedExcel = (payed: [string, number[]]) => {
    });
 
    const index = value.findIndex((cv: unknown[]) => {
-      return cv[0] === payed[0];
+      return cv[0] === paid[0];
    });
-   ws[cellData(index, 3)].v = dateFormat(payed[1]);
-   ws[cellData(index, 6)].v = payed[1][0];
-   ws[cellData(index, 7)].v = payed[1][1];
+   ws[cellData(index, 3)].v = dateFormat(paid[1]);
+   ws[cellData(index, 6)].v = paid[1][0];
+   ws[cellData(index, 7)].v = paid[1][1];
    ws[cellData(index, 8)].v = 2;
    reWrite(wb);
    return true;

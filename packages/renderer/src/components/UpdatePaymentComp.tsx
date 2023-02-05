@@ -18,7 +18,7 @@ const UpdatePaymentComp = () => {
    async function updateNextMonth() {
       let isDone = false;
       try {
-         isDone = window.api.payed(val);
+         isDone = window.api.paid(val);
       } catch (error: any) {
          alert('opps!!Something went wrong');
          console.log(error.message);
@@ -78,7 +78,7 @@ const UpdatePaymentComp = () => {
                onClick={() => onclickHandler('update')}
                className=' ml-3 mt-5  rounded-lg bg-blue-800 px-6 py-2.5  text-sm  hover:bg-blue-500 focus:ring-4 '
             >
-               Payed this Month
+               Paid this Month
             </button>
          </div>
       </div>

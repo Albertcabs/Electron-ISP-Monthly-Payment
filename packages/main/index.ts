@@ -6,7 +6,7 @@ import {
    writeRowExcel,
    deleteRowExcel,
    updateRowExcel,
-   payedExcel,
+   paidExcel,
 } from './excelFunction';
 
 // import installExtension, {
@@ -29,7 +29,7 @@ const createWindow = () => {
       },
    });
 
-   // real excel file
+   // real excel file{}
 
    ipcMain.handle('readFile', async () => readExcel());
 
@@ -45,8 +45,8 @@ const createWindow = () => {
       return updateRowExcel(updateList);
    });
 
-   ipcMain.handle('payed', async (event, payed) => {
-      return payedExcel(payed);
+   ipcMain.handle('paid', async (event, paid) => {
+      return paidExcel(paid);
    });
 
    // and load the index.html of the app.

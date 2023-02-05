@@ -8,7 +8,7 @@ declare global {
          addPerson: (add: ICustomerData) => boolean;
          deletePerson: (deletePerson: string[]) => boolean;
          updateList: (updatePerson: ICustomerData) => boolean;
-         payed: (payed: [string, number[]]) => boolean;
+         paid: (paid: [string, number[]]) => boolean;
       };
    }
 }

@@ -43,10 +43,6 @@ const TableBody = ({
                   setClearSearch(true);
                   clickScrollHandler();
                }}
-               onClick={() => {
-                  setClearSearch(true);
-                  clickScrollHandler();
-               }}
             >
                {tBody.map((val, index) => {
                   return (
@@ -63,6 +59,10 @@ const TableBody = ({
                         <div
                            style={{
                               width: `${widT[0]}`,
+                           }}
+                           onClick={() => {
+                              setClearSearch(true);
+                              clickScrollHandler();
                            }}
                            className='m-auto border-r border-slate-700 text-center'
                         >

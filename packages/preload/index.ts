@@ -8,5 +8,5 @@ contextBridge.exposeInMainWorld('api', {
       ipcRenderer.invoke('deletePerson', deletePerson),
    updateList: (updatePerson: ICustomerData) =>
       ipcRenderer.invoke('updateList', updatePerson),
-   payed: (payed: [string, number[]]) => ipcRenderer.invoke('payed', payed),
+   paid: (paid: [string, number[]]) => ipcRenderer.invoke('paid', paid),
 });
